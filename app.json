@@ -1,0 +1,16 @@
+{
+	"repoName":"iotapp-template-uart",
+	"title":"(UART) Serial Read/Write",
+	"tooltip":"A node.js based project that demonstrates reading and writing data via the serial ports.",
+	"description":"A node.js based project that demonstrates reading and writing data via the serial ports.",
+	"articleUrl":"https://software.intel.com/en-us/intel-xdk-iot-edition-guide",
+    "screenshotUrl":"",
+    "iconUrl":"",
+	"highlights":[""],
+    "keywords":[""],
+	"visible": true,
+	"apppreview":false,
+	"appName":"demo.uart",
+	"relname":"4.0.0",
+	"projectTypeName": "com.intel.xdk.projecttype.iotapp"
+}
