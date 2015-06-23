@@ -29,7 +29,7 @@ Linux name: /dev/ttyMFD2
 
 This is a very useful port to connect to for debugging, especially when trying to isolate boot problems.  The kernel generates its debug “spew” to this port at 115,200 baud.  I find it useful to always have a PuTTY terminal console connected to this.
 
-##Intel(R) Galileo
+###Intel(R) Galileo
 - provides UART TTL (5V/3.3V) serial communication, which is available on digital pin 0 (RX) and 1 (TX). In addition, a second UART provides RS-232 support and is connected via a 3.5mm jack.
 - The USB Client ports allows for serial (CDC-ACM) communications over USB. This provides a serial connection
 to the Serial Monitor or other applications on your computer. It is also used to upload sketches to the board.
