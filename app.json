@@ -3,7 +3,7 @@
 	"title":"(UART) Serial Read/Write",
 	"tooltip":"A node.js based project that demonstrates reading and writing data via the serial ports.",
 	"description":"A node.js based project that demonstrates reading and writing data via the serial ports.",
-	"articleUrl":"https://software.intel.com/en-us/intel-xdk-iot-edition-guide",
+	"articleUrl":"https://software.intel.com/en-us/node-js-templates-for-intel-xdk-iot-edition",
     "screenshotUrl":"",
     "iconUrl":"",
 	"highlights":[""],

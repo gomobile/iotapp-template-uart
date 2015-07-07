@@ -29,6 +29,8 @@ Linux name: /dev/ttyMFD2
 
 This is a very useful port to connect to for debugging, especially when trying to isolate boot problems.  The kernel generates its debug “spew” to this port at 115,200 baud.  I find it useful to always have a PuTTY terminal console connected to this.
 
+**Reference**: https://www.arduino.cc/en/ArduinoCertified/IntelEdison
+
 ###Intel(R) Galileo
 - provides UART TTL (5V/3.3V) serial communication, which is available on digital pin 0 (RX) and 1 (TX). In addition, a second UART provides RS-232 support and is connected via a 3.5mm jack.
 - The USB Client ports allows for serial (CDC-ACM) communications over USB. This provides a serial connection
@@ -40,12 +42,13 @@ Name: UART0,
 Location: the Digital 0 and 1 pins
 Linux name: /dev/ttyS0
 
+**Reference**: https://www.arduino.cc/en/ArduinoCertified/IntelGalileoGen2
 
 Intel(R) XDK 
 -------------------------------------------
 This template is part of the Intel(R) XDK IoT Edition. 
 Download the Intel(R) XDK at http://software.intel.com/en-us/html5. To see the technical details of the sample, 
-please visit the sample article page at TBA.
+please visit the sample article page at https://software.intel.com/en-us/node-js-templates-for-intel-xdk-iot-edition.
 
 Important App Files
 ---------------------------
@@ -59,3 +62,9 @@ mraa
 
 * source:  https://github.com/intel-iot-devkit/mraa
 * license:  https://github.com/intel-iot-devkit/mraa/blob/9d488c8e869e59e1dff2c68218a8f38e9b959cd7/cmake/modules/LICENSE_1_0.txt
+
+serialport
+--------------------------------------------
+* Node Module
+* source:  https://www.npmjs.com/package/serialport
+* license:  https://github.com/voodootikigod/node-serialport/blob/master/LICENSE

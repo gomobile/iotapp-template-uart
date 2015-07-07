@@ -14,7 +14,7 @@
     2. opkg update
     3. opkg upgrade
 
-    Article: https://software.intel.com/en-us/html5/articles/tba
+    Article: https://software.intel.com/en-us/node-js-templates-for-intel-xdk-iot-edition
 */
 
 
