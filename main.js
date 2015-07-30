@@ -3,7 +3,7 @@
 // Leave the above lines for propper jshinting
 
 /*
-    The UART - Serial sample application distributed within Intel® XDK IoT Edition under the IoT with Node.js Projects project creation option showcases how to find the general-purpose transistor-transitor logic(TTL)-level port, read and write data.
+    The UART - Serial sample application distributed within Intel® XDK IoT Edition under the IoT with Node.js Projects project creation option showcases how to find the general-purpose transistor-transistor logic(TTL)-level port, read and write data.
 
     MRAA - Low Level Skeleton Library for Communication on GNU/Linux platforms
     Library in C/C++ to interface with Galileo & other Intel platforms, in a structured API with port names/numbering that match compatible boards & with bindings to javascript.
@@ -15,6 +15,8 @@
     3. opkg upgrade
 
     Article: https://software.intel.com/en-us/node-js-templates-for-intel-xdk-iot-edition
+
+    Review the README.md for more information about getting started with a sensor.
 */
 
 
@@ -24,7 +26,7 @@ console.log('MRAA Version: ' + mraa.getVersion()); //print out the mraa version 
 //Intel(R) Edison & Intel(R) Galileo 
 u = new mraa.Uart(0); //Default
 //Name:     UART1, the general-purpose TTL-level port (Arduino shield compatibility)
-//Location: Pins 0 (RX) and 1 (TX) on the Arduino shield interface headers
+//Location: Pins 0 (RX) and 1 (TX) on the Arduino shield interface headers or the UART slot on the Grove Starter Kit Base Shield
 var serialPath = u.getDevicePath(); //Default general purpose port "/dev/ttyMFD1" - Intel(R) Edison; "/dev/ttyS0" - Intel(R) Galileo
 
 //Name:     “Multi-gadget” or “Firmware Programming” or "Arduino Serial console" or "OTG" port
@@ -39,7 +41,7 @@ var serialPath = u.getDevicePath(); //Default general purpose port "/dev/ttyMFD1
 //Serialport NodeJS module declared in package.json
 var SerialPort = require("serialport").SerialPort;
 var serialPort = new SerialPort(serialPath, {
-    baudrate: 115200
+    baudrate: 9600
 });
 
 serialPort.on("open",function() {

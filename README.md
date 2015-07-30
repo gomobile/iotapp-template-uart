@@ -44,6 +44,10 @@ Linux name: /dev/ttyS0
 
 **Reference**: https://www.arduino.cc/en/ArduinoCertified/IntelGalileoGen2
 
+####Getting Started
+In order to use communicate with your sensors via UART, you will need to connect your sensor to Pin 0 (RX), Pin 1 (TX), GND and Power on the board directly or to the the UART slot on the Grove Starter Kit base shield if available.
+
+
 Intel(R) XDK 
 -------------------------------------------
 This template is part of the Intel(R) XDK IoT Edition. 
