@@ -6,10 +6,10 @@
   "visible" : true,
   "sortWeight" : "0.0",
   "repoName":"iotapp-template-uart",
-  "tooltip":"A node.js based project that demonstrates reading and writing data via the serial ports.",
-  "description":"A node.js based project that demonstrates reading and writing data via the serial ports.",
+  "tooltip":"Read and write data via the UART (serial port).",
+  "description":"A Node.js IoT project that demonstrates reading and writing data via the UART (aka serial ports).",
   "articleUrl":"https://software.intel.com/en-us/node-js-templates-for-intel-xdk-iot-edition",
-  "keywords" : [""],
+  "keywords" : ["UART","serial i/o"],
   "targets": ["edison","galileo"],
   "runtimes": ["node"]
 }
