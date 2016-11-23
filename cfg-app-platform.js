@@ -27,7 +27,7 @@
  *
  * var options = {
  *     skipTest: true,         // skip the platform compatibility tests
- *     altPin:   1             // initialize alternate UART for I/O
+ *     altPin:   "/dev/ttyGS0" // initialize alternate UART for I/O
  * } ;
  * var cfg = require("./cfg-app-platform.js")(options) ;
  *
@@ -116,7 +116,7 @@ module.exports = function(options) {
                 break ;
 
             case cfg.mraa.INTEL_GT_TUCHUCK:             // Joule (aka Grosse Tete)
-                io = opt.altPin ? io : 0 ;              // use alternate UART?
+                io = opt.altPin ? io : "/dev/ttyS2" ;   // use alternate UART?
                 break ;
 
             default:

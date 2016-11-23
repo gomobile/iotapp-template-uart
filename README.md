@@ -33,7 +33,7 @@ communication sample app.
 >   Following are some board-specific notes to help you use this app with your
 >   specific IoT hardware device.
 
-### [Intel® Galileo Gen1 Board](http://intel.com/galileo)
+### [Intel® Galileo Board for Arduino (Gen1)](http://intel.com/galileo)
 
 The Intel Galileo Gen1 board provides access to two UART controllers:
 
@@ -41,20 +41,19 @@ The Intel Galileo Gen1 board provides access to two UART controllers:
   Arduino compatible header (near the top-right corner of the board, just
   above the Intel Galileo logo).
 
+  To communicate via UART(0), connect to pin 0 (RX), pin 1 (TX), 3.3V and GND,
+  directly on the Galileo board or using the UART slot on a [Seeed Base
+  Shield][8], if available.
+
 * UART(?) is accessed via a [3.5mm audio jack][7] (located near the Ethernet
-  jack). This UART must be initialzed with mraa using its `/dev/tty` name.
+  jack). This UART must be initialzed with mraa using its `/dev/tty???` name.
 
 [7]: http://www.ftdichip.com/Products/Cables/USBTTLSerial.htm
-
-To communicate via UART(0), connect to pin 0 (RX), pin 1 (TX), 3.3V and GND,
-directly on the Galileo board or using the UART slot on a [Seeed Base
-Shield][8], if available.
-
 [8]: https://www.seeedstudio.com/Base-Shield-V2-p-1378.html
 
-See also: https://www.arduino.cc/en/ArduinoCertified/IntelGalileo
+See also: <https://www.arduino.cc/en/ArduinoCertified/IntelGalileo>
 
-### [Intel® Galileo Gen2 Board](http://intel.com/galileo)
+### [Intel® Galileo Board for Arduino (Gen2)](http://intel.com/galileo)
 
 The Intel Galileo Gen2 board provides access to two UART controllers:
 
@@ -62,21 +61,20 @@ The Intel Galileo Gen2 board provides access to two UART controllers:
   Arduino compatible header (near the top-right corner of the board, just
   above the Intel Galileo logo).
 
+  To communicate via UART(0), connect to pin 0 (RX), pin 1 (TX), 3.3V and GND,
+  directly on the Galileo board or by using the UART slot on a [Seeed Base
+  Shield][10], if available.
+
 * UART(?) is available via the [6-pin 3.3V USB TTL FTDI header][9] (near the
-  Ethernet jack). This UART must be initialzed with mraa using its `/dev/tty`
+  Ethernet jack). This UART must be initialzed with mraa using its `/dev/tty???`
   name.
 
 [9]: http://www.ftdichip.com/Products/Cables/USBTTLSerial.htm
-
-To communicate via UART(0), connect to pin 0 (RX), pin 1 (TX), 3.3V and GND,
-directly on the Galileo board or by using the UART slot on a [Seeed Base
-Shield][10], if available.
-
 [10]: https://www.seeedstudio.com/Base-Shield-V2-p-1378.html
 
-See also: https://www.arduino.cc/en/ArduinoCertified/IntelGalileoGen2
+See also: <https://www.arduino.cc/en/ArduinoCertified/IntelGalileoGen2>
 
-### [Intel® Edison Development Platform](http://intel.com/edison)
+### [Intel® Edison Board for Arduino](http://intel.com/edison)
 
 The Intel Edison board provides access to three UART controllers:
 
@@ -86,26 +84,26 @@ The Intel Edison board provides access to three UART controllers:
 
   To communicate using UART(0), connect to pin 0 (RX), pin 1 (TX), 3.3V and GND,
   directly on the Galileo board or by using the UART slot on a [Seeed Base
-  Shield][13], if available.
+  Shield][11], if available.
 
-[13]: https://www.seeedstudio.com/Base-Shield-V2-p-1378.html
+[11]: https://www.seeedstudio.com/Base-Shield-V2-p-1378.html
 
-* UART(?) is accessed as part of the USB “multifunction gadget” interface.
+* UART(ttyGS0) is accessed as part of the USB “multifunction gadget” interface.
 
-  This “[Multifunction Composite Gadget][11]” interface provides access to a
+  This “[Multifunction Composite Gadget][12]” interface provides access to a
   serial console, RNDIS Ethernet interface and USB mass storage device. It is
   the uppermost of two micro-USB connectors, located along the right edge of
   the board (J16). This port is only active when SW1 (located directly above
-  the micro-USB connector) is [set to “device mode,”][12] which is the switch
+  the micro-USB connector) is [set to “device mode,”][13] which is the switch
   position closest to the micro-USB connector.
 
   This UART must be initialzed with mraa using its `/dev/ttyGS0` name.
 
-[11]: https://www.kernel.org/doc/Documentation/usb/gadget_multi.txt
-[12]: https://communities.intel.com/docs/DOC-23454
+[12]: https://www.kernel.org/doc/Documentation/usb/gadget_multi.txt
+[13]: https://communities.intel.com/docs/DOC-23454
 
-* UART(?) is the Linux kernel debug port. It is the micro-USB connector located
-  at the lower-right corner of the board (J3).
+* UART(ttyMFD2) is the Linux kernel debug port. It is the micro-USB connector
+  located at the lower-right corner of the board (J3).
 
   This is a very useful port to connect to for debugging, especially when
   trying to isolate boot problems. The kernel generates its “debug spew” to
@@ -114,11 +112,22 @@ The Intel Edison board provides access to three UART controllers:
 
   This UART must be initialzed with mraa using its `/dev/ttyMFD2` name.
 
-See also: https://www.arduino.cc/en/ArduinoCertified/IntelEdison
+See also: <https://www.arduino.cc/en/ArduinoCertified/IntelEdison>
 
 ### [Intel® Joule™ 570x Developer Kit](http://intel.com/joule)
 
->   TBW (To Be Written) -- this sample does not yet work on Joule boards.
+* UART(ttyS2) is accessed via the USB “FTDI” interface.
+
+  This [“FTDI”][14] interface provides access to a serial to USB console device.
+  It is the micro-USB connector (j9) located between the large Type A USB
+  connector and the small micro-HDMI connector. This port is typically
+  configured to listen for a login using the Linux getty daemon. This means that
+  data you write to the this port may be intermixed with serial data emitted by
+  other services that are also connected to the port.
+
+  This UART must be initialzed with mraa using its `/dev/ttyGS0` name.
+
+[14]: https://en.wikipedia.org/wiki/FTDI
 
 Important Sample App Files
 --------------------------
@@ -134,6 +143,6 @@ Important Sample Project Files
 
 Tested IoT Node.js Platforms
 ----------------------------
-* [Intel® Galileo Board](http://intel.com/galileo)
-* [Intel® Edison Development Platform](http://intel.com/edison)
+* [Intel® Galileo Board for Arduino](http://intel.com/galileo)
+* [Intel® Edison Board for Ardunio](http://intel.com/edison)
 * [Intel® Joule™ 570x Developer Kit](http://intel.com/joule)

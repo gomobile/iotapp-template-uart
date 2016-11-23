@@ -50,24 +50,22 @@ cfg.ioPath = cfg.io.getDevicePath() ;           // get path to UART device
 // or just a device name string, both work (see the mraa Uart constructor docs).
 
 if( typeof cfg.ioPin === "number" && Number.isInteger(cfg.ioPin) ) {
-    console.log("UART number: " + cfg.ioPin) ;
+    console.log("UART mraa #: " + cfg.ioPin) ;
     console.log("UART" + cfg.ioPin + " device path: " + cfg.ioPath) ;
 } else {
-    console.log("UART has no mraa pin #") ;
+    console.log("UART has no mraa #, using: " + cfg.ioPin) ;
     console.log("UART device path: " + cfg.ioPath) ;
 }
 
 
-// initialize 'serialport' node module, declared in app's package.json
-// connect our 'serialport' object to our physical serial port (device)
+// configure UART device (speed, bits, etc.)
+// NOTE: inconsistent support for setNonBlocking(), avoiding use
 
-// cfg.SerialPort = require("serialport") ;
-// cfg.ioSerial = new cfg.SerialPort(cfg.ioPath, {baudrate:115200}) ;
 cfg.io.setBaudRate(115200) ;
 cfg.io.setMode(8, cfg.mraa.UART_PARITY_NONE, 1) ;
-cfg.io.setNonBlocking(true) ;
+// cfg.io.setNonBlocking(true) ;
 cfg.io.setFlowcontrol(false, false) ;
-// cfg.io.setTimeout(0, 0, 0) ;        // see http://stackoverflow.com/a/26006680/2914328
+cfg.io.setTimeout(0, 0, 0) ;        // see http://stackoverflow.com/a/26006680/2914328
 
 
 // write current time to the UART port, at a periodic interval
@@ -76,7 +74,7 @@ var time = new Date() ;
 var periodicActivity = function() {
     time.setTime(Date.now()) ;                              // assign current time to our Date object
     cfg.io.writeStr(time.toLocaleTimeString() + " ") ;      // write the current time to the UART
-    process.stdout.write(time.toLocaleTimeString() + " ") ; // and to the console
+    process.stdout.write(time.toLocaleTimeString() + " ") ; // and to the JavaScript console
 } ;
 var intervalID = setInterval(periodicActivity, 2000) ;      // start the periodic writes
 
