@@ -16,93 +16,96 @@ start with [the Intel XDK documentation][3].
 
 App Overview
 ------------
-A simple node.js application that demonstrates reading and writing data via a
-serial port, on select Intel IoT development boards. This app uses the
-[‘serialport' node module][4] to enable communication via the serial port.
+A simple node.js application that demonstrates writing data via a serial port,
+on select Intel IoT development boards. This app uses the [mraa Uart object][4]
+to write to the selected serial port's TxD (Transmit Data) pin. This is a
+convenient way to print debug messages from your IoT app, while it is running.
 
-[4]: https://www.npmjs.com/package/serialport
+[4]:http://iotdk.intel.com/docs/master/mraa/classmraa_1_1_uart.html
 
-Serial communication is performed via a UART (Universal Asynchronous
-Receiver/Transmitter), commonly associated with [RS-232][5] and [COM ports][6].
-You will need to identify the serial port that will be used by this data
-communication sample app.
+Serial communication is performed via an onboard [UART][5] (Universal
+Asynchronous Receiver/Transmitter). UARTs are serial I/O devices commonly
+associated with [RS-232][6] and [COM ports][7].
 
-[5]: https://en.wikipedia.org/wiki/RS-232
-[6]: https://en.wikipedia.org/wiki/COM_(hardware_interface)
+[5]: https://en.wikipedia.org/wiki/Universal_asynchronous_receiver/transmitter
+[6]: https://en.wikipedia.org/wiki/RS-232
+[7]: https://en.wikipedia.org/wiki/COM_(hardware_interface)
 
->   Following are some board-specific notes to help you use this app with your
->   specific IoT hardware device.
+> Following are some board-specific notes to help you use this app with your
+> specific IoT hardware device.
 
 ### [Intel® Galileo Board for Arduino (Gen1)](http://intel.com/galileo)
 
 The Intel Galileo Gen1 board provides access to two UART controllers:
 
-* UART(0) is “UART TTL” compatible and accessed via pins 0 and 1 of the 18-pin
-  Arduino compatible header (near the top-right corner of the board, just
-  above the Intel Galileo logo).
+* UART(`0`) is “UART TTL” compatible and accessed via pins 0 and 1 of the
+  18-pin Arduino compatible header (near the top-right corner of the board,
+  just above the Intel Galileo logo).
 
-  To communicate via UART(0), connect to pin 0 (RX), pin 1 (TX), 3.3V and GND,
-  directly on the Galileo board or using the UART slot on a [Seeed Base
-  Shield][8], if available.
+  To monitor data printed via UART(`0`), connect to pin 1 (TxD), directly on
+  your Galileo board or by using the UART slot of a [Seeed Base Shield][8]
+  or equivalent mezzanine board, if available.
 
-* UART(?) is accessed via a [3.5mm audio jack][7] (located near the Ethernet
-  jack). This UART must be initialzed with mraa using its `/dev/tty???` name.
-
-[7]: http://www.ftdichip.com/Products/Cables/USBTTLSerial.htm
 [8]: https://www.seeedstudio.com/Base-Shield-V2-p-1378.html
 
-See also: <https://www.arduino.cc/en/ArduinoCertified/IntelGalileo>
+* UART(`???`) is accessed via a [3.5mm audio jack][9] (located near the Ethernet
+  jack). This UART must be initialized with mraa using its `/dev/tty???` name.
+
+[9]: http://www.ftdichip.com/Products/Cables/USBTTLSerial.htm
+
+> See also: <https://www.arduino.cc/en/ArduinoCertified/IntelGalileo>
 
 ### [Intel® Galileo Board for Arduino (Gen2)](http://intel.com/galileo)
 
 The Intel Galileo Gen2 board provides access to two UART controllers:
 
-* UART(0) is “UART TTL” compatible and accessible via pins 0 and 1 of the 18-pin
-  Arduino compatible header (near the top-right corner of the board, just
-  above the Intel Galileo logo).
+* UART(`0`) is “UART TTL” compatible and accessible via pins 0 and 1 of the
+  18-pin Arduino compatible header (near the top-right corner of the board,
+  just above the Intel Galileo logo).
 
-  To communicate via UART(0), connect to pin 0 (RX), pin 1 (TX), 3.3V and GND,
-  directly on the Galileo board or by using the UART slot on a [Seeed Base
-  Shield][10], if available.
+  To monitor data printed via UART(`0`), connect to pin 1 (TxD), directly on
+  your Galileo board or by using the UART slot of a [Seeed Base Shield][10]
+  or equivalent mezzanine board, if available.
 
-* UART(?) is available via the [6-pin 3.3V USB TTL FTDI header][9] (near the
-  Ethernet jack). This UART must be initialzed with mraa using its `/dev/tty???`
-  name.
-
-[9]: http://www.ftdichip.com/Products/Cables/USBTTLSerial.htm
 [10]: https://www.seeedstudio.com/Base-Shield-V2-p-1378.html
 
-See also: <https://www.arduino.cc/en/ArduinoCertified/IntelGalileoGen2>
+* UART(`???`) is available via the [6-pin 3.3V USB TTL FTDI header][11] (near
+  the Ethernet jack). This UART must be initialized with mraa using its
+  `/dev/tty???` name.
+
+[11]: http://www.ftdichip.com/Products/Cables/USBTTLSerial.htm
+
+> See also: <https://www.arduino.cc/en/ArduinoCertified/IntelGalileoGen2>
 
 ### [Intel® Edison Board for Arduino](http://intel.com/edison)
 
 The Intel Edison board provides access to three UART controllers:
 
-* UART(0) is “UART TTL” compatible and accessible via pins 0 and 1 of the 18-pin
-  Arduino compatible header (along the bottom of the board, near the Edison
-  CPU module).
+* UART(`0`) is “UART TTL” compatible and accessible via pins 0 and 1 of the
+  18-pin Arduino compatible header (along the bottom of the board, near the
+  Edison CPU module).
 
-  To communicate using UART(0), connect to pin 0 (RX), pin 1 (TX), 3.3V and GND,
-  directly on the Galileo board or by using the UART slot on a [Seeed Base
-  Shield][11], if available.
+  To monitor data printed via UART(`0`), connect to pin 1 (TxD), directly on
+  your Galileo board or by using the UART slot of a [Seeed Base Shield][12]
+  or equivalent mezzanine board, if available.
 
-[11]: https://www.seeedstudio.com/Base-Shield-V2-p-1378.html
+[12]: https://www.seeedstudio.com/Base-Shield-V2-p-1378.html
 
-* UART(ttyGS0) is accessed as part of the USB “multifunction gadget” interface.
+* UART(`ttyGS0`) is accessed as part of the USB “multifunction gadget” interface.
 
-  This “[Multifunction Composite Gadget][12]” interface provides access to a
+  This “[Multifunction Composite Gadget][13]” interface provides access to a
   serial console, RNDIS Ethernet interface and USB mass storage device. It is
   the uppermost of two micro-USB connectors, located along the right edge of
   the board (J16). This port is only active when SW1 (located directly above
-  the micro-USB connector) is [set to “device mode,”][13] which is the switch
+  the micro-USB connector) is [set to “device mode,”][14] which is the switch
   position closest to the micro-USB connector.
 
-  This UART must be initialzed with mraa using its `/dev/ttyGS0` name.
+  This UART must be initialized with mraa using its `/dev/ttyGS0` name.
 
-[12]: https://www.kernel.org/doc/Documentation/usb/gadget_multi.txt
-[13]: https://communities.intel.com/docs/DOC-23454
+[13]: https://www.kernel.org/doc/Documentation/usb/gadget_multi.txt
+[14]: https://communities.intel.com/docs/DOC-23454
 
-* UART(ttyMFD2) is the Linux kernel debug port. It is the micro-USB connector
+* UART(`ttyMFD2`) is the Linux kernel debug port. It is the micro-USB connector
   located at the lower-right corner of the board (J3).
 
   This is a very useful port to connect to for debugging, especially when
@@ -110,24 +113,53 @@ The Intel Edison board provides access to three UART controllers:
   this port at 115,200 baud. You may find it useful to attach a PuTTY or
   similar serial terminal console application to this USB port.
 
-  This UART must be initialzed with mraa using its `/dev/ttyMFD2` name.
+  This UART must be initialized with mraa using its `/dev/ttyMFD2` name.
 
-See also: <https://www.arduino.cc/en/ArduinoCertified/IntelEdison>
+> See also: <https://www.arduino.cc/en/ArduinoCertified/IntelEdison>
 
 ### [Intel® Joule™ 570x Developer Kit](http://intel.com/joule)
 
-* UART(ttyS2) is accessed via the USB “FTDI” interface.
+> Because the Joule BIOS does not enumerate the onboard UART devices, you
+> must use the Linux `/dev/tty##` device names to access these devices.
+> This means there are no "UART pin numbers" that can be used to identify the
+> onboard Joule UART devices.
 
-  This [“FTDI”][14] interface provides access to a serial to USB console device.
-  It is the micro-USB connector (j9) located between the large Type A USB
-  connector and the small micro-HDMI connector. This port is typically
-  configured to listen for a login using the Linux getty daemon. This means that
-  data you write to the this port may be intermixed with serial data emitted by
-  other services that are also connected to the port.
+* UART(`ttyS0`) is “UART TTL” compatible. The TxD (Transmit) pin of this UART
+  is accessed via pin 7 of the J12 connector (the top-most 40-pin header). The
+  other UART pins (RxD, RTS and CTS) can be located on J13 (the other 40-pin
+  header) at pins 28, 30 and 32 (respectively). Because this app only writes to
+  the UART, it is only necessary to monitor the TxD pin.
 
-  This UART must be initialzed with mraa using its `/dev/ttyGS0` name.
+  This UART must be initialized with mraa using its `/dev/ttyS0` name.
 
-[14]: https://en.wikipedia.org/wiki/FTDI
+* UART(`ttyS1`) is “UART TTL” compatible. The TxD (Transmit) pin of this UART
+  is accessed via pin 22 of the J12 connector (the top-most 40-pin header). The
+  RxD pin is located at pin 24 of J12. There are no RTS and CTS pins associated
+  with this UART. Because this app only writes to the UART, it is only necessary
+  to monitor the TxD pin.
+
+  This UART must be initialized with mraa using its `/dev/ttyS1` name.
+
+* UART(`ttyS2`) is accessed via the USB “FTDI” interface.
+
+  This [USB “FTDI”][15] interface provides access to a serial to USB console
+  device. It is the micro-USB connector (j9) located between the large Type A
+  USB connector and the small micro-HDMI connector. This port is typically
+  configured to listen for a login using the Linux `getty` daemon. This means
+  that data you write to the this port may be intermixed with serial data
+  emitted by other services that are also connected to the port.
+
+  This UART must be initialized with mraa using its `/dev/ttyS2` name.
+
+[15]: https://en.wikipedia.org/wiki/FTDI
+
+* UART(`ttyS3`) is “UART TTL” compatible. The TxD (Transmit) pin of this UART
+  is accessed via pin 34 of the J13 connector (the inner 40-pin header). The
+  other UART pins (RxD, RTS and CTS) are also located on J13, at pins 36, 38
+  and 40 (respectively). Because this app only writes to the UART, it is only
+  necessary to monitor the TxD pin.
+
+  This UART must be initialized with mraa using its `/dev/ttyS3` name.
 
 Important Sample App Files
 --------------------------

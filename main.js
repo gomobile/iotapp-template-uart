@@ -59,9 +59,11 @@ if( typeof cfg.ioPin === "number" && Number.isInteger(cfg.ioPin) ) {
 
 
 // configure UART device (speed, bits, etc.)
-// NOTE: inconsistent support for setNonBlocking(), avoiding use
+// NOTE: inconsistent support for setNonBlocking(), avoiding use here
+// NOTE: set BAUD rate to 1200 for easier detection with a multimeter
 
 cfg.io.setBaudRate(115200) ;
+//cfg.io.setBaudRate(1200) ;
 cfg.io.setMode(8, cfg.mraa.UART_PARITY_NONE, 1) ;
 // cfg.io.setNonBlocking(true) ;
 cfg.io.setFlowcontrol(false, false) ;
@@ -73,6 +75,7 @@ cfg.io.setTimeout(0, 0, 0) ;        // see http://stackoverflow.com/a/26006680/2
 var time = new Date() ;
 var periodicActivity = function() {
     time.setTime(Date.now()) ;                              // assign current time to our Date object
+    cfg.io.writeStr("UUUUUUUUUUUUUUUUUUUU ") ;              // generates ~square wave for easy testing
     cfg.io.writeStr(time.toLocaleTimeString() + " ") ;      // write the current time to the UART
     process.stdout.write(time.toLocaleTimeString() + " ") ; // and to the JavaScript console
 } ;
