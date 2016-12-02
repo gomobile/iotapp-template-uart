@@ -38,18 +38,20 @@ associated with [RS-232][6] and [COM ports][7].
 
 The Intel Galileo Gen1 board provides access to two UART controllers:
 
-* UART(`0`) is “UART TTL” compatible and accessed via pins 0 and 1 of the
+* `Uart(0)` is “UART TTL” compatible and accessed via pins 0 and 1 of the
   18-pin Arduino compatible header (near the top-right corner of the board,
   just above the Intel Galileo logo).
 
-  To monitor data printed via UART(`0`), connect to pin 1 (TxD), directly on
-  your Galileo board or by using the UART slot of a [Seeed Base Shield][8]
+  To monitor data printed via `Uart(0)`, connect to pin 1 (TxD), directly on
+  your Galileo board, or by using the UART slot of a [Seeed Base Shield][8]
   or equivalent mezzanine board, if available.
 
 [8]: https://www.seeedstudio.com/Base-Shield-V2-p-1378.html
 
-* UART(`???`) is accessed via a [3.5mm audio jack][9] (located near the Ethernet
-  jack). This UART must be initialized with mraa using its `/dev/tty???` name.
+* `Uart("/dev/tty???")` is accessed via a [3.5mm audio jack][9] (located
+  near the Ethernet jack).
+
+  This UART must be initialized with mraa using its device name.
 
 [9]: http://www.ftdichip.com/Products/Cables/USBTTLSerial.htm
 
@@ -59,19 +61,20 @@ The Intel Galileo Gen1 board provides access to two UART controllers:
 
 The Intel Galileo Gen2 board provides access to two UART controllers:
 
-* UART(`0`) is “UART TTL” compatible and accessible via pins 0 and 1 of the
+* `Uart(0)` is “UART TTL” compatible and accessible via pins 0 and 1 of the
   18-pin Arduino compatible header (near the top-right corner of the board,
   just above the Intel Galileo logo).
 
-  To monitor data printed via UART(`0`), connect to pin 1 (TxD), directly on
-  your Galileo board or by using the UART slot of a [Seeed Base Shield][10]
+  To monitor data printed via `Uart(0)`, connect to pin 1 (TxD), directly on
+  your Galileo board, or by using the UART slot of a [Seeed Base Shield][10]
   or equivalent mezzanine board, if available.
 
 [10]: https://www.seeedstudio.com/Base-Shield-V2-p-1378.html
 
-* UART(`???`) is available via the [6-pin 3.3V USB TTL FTDI header][11] (near
-  the Ethernet jack). This UART must be initialized with mraa using its
-  `/dev/tty???` name.
+* `Uart("/dev/tty???")` is available via the 6-pin 3.3V
+  [USB TTL FTDI header][11] located near the Ethernet jack.
+
+  This UART must be initialized with mraa using its device name.
 
 [11]: http://www.ftdichip.com/Products/Cables/USBTTLSerial.htm
 
@@ -81,17 +84,18 @@ The Intel Galileo Gen2 board provides access to two UART controllers:
 
 The Intel Edison board provides access to three UART controllers:
 
-* UART(`0`) is “UART TTL” compatible and accessible via pins 0 and 1 of the
+* `Uart(0)` is “UART TTL” compatible and accessible via pins 0 and 1 of the
   18-pin Arduino compatible header (along the bottom of the board, near the
   Edison CPU module).
 
-  To monitor data printed via UART(`0`), connect to pin 1 (TxD), directly on
-  your Galileo board or by using the UART slot of a [Seeed Base Shield][12]
+  To monitor data printed via `Uart(0)`, connect to pin 1 (TxD), directly on
+  your Edison board or by using the UART slot of a [Seeed Base Shield][12]
   or equivalent mezzanine board, if available.
 
 [12]: https://www.seeedstudio.com/Base-Shield-V2-p-1378.html
 
-* UART(`ttyGS0`) is accessed as part of the USB “multifunction gadget” interface.
+* `Uart("/dev/ttyGS0")` is accessed as part of the USB “multifunction gadget”
+  interface.
 
   This “[Multifunction Composite Gadget][13]” interface provides access to a
   serial console, RNDIS Ethernet interface and USB mass storage device. It is
@@ -100,66 +104,66 @@ The Intel Edison board provides access to three UART controllers:
   the micro-USB connector) is [set to “device mode,”][14] which is the switch
   position closest to the micro-USB connector.
 
-  This UART must be initialized with mraa using its `/dev/ttyGS0` name.
+  This UART must be initialized with mraa using its device name.
 
 [13]: https://www.kernel.org/doc/Documentation/usb/gadget_multi.txt
 [14]: https://communities.intel.com/docs/DOC-23454
 
-* UART(`ttyMFD2`) is the Linux kernel debug port. It is the micro-USB connector
-  located at the lower-right corner of the board (J3).
+* `Uart("/dev/ttyMFD2")` is the Linux kernel debug port. It is the micro-USB
+  connector located at the lower-right corner of the board (J3).
 
   This is a very useful port to connect to for debugging, especially when
   trying to isolate boot problems. The kernel generates its “debug spew” to
   this port at 115,200 baud. You may find it useful to attach a PuTTY or
   similar serial terminal console application to this USB port.
 
-  This UART must be initialized with mraa using its `/dev/ttyMFD2` name.
+  This UART must be initialized with mraa using its device name.
 
 > See also: <https://www.arduino.cc/en/ArduinoCertified/IntelEdison>
 
 ### [Intel® Joule™ 570x Developer Kit](http://intel.com/joule)
 
 > Because the Joule BIOS does not enumerate the onboard UART devices, you
-> must use the Linux `/dev/tty##` device names to access these devices.
+> must use the Linux `/dev/tty??` device names to access these devices.
 > This means there are no "UART pin numbers" that can be used to identify the
 > onboard Joule UART devices.
 
-* UART(`ttyS0`) is “UART TTL” compatible. The TxD (Transmit) pin of this UART
-  is accessed via pin 7 of the J12 connector (the top-most 40-pin header). The
-  other UART pins (RxD, RTS and CTS) can be located on J13 (the other 40-pin
+* `Uart("/dev/ttyS0")` is “UART TTL” compatible. The TxD (Transmit) pin of this
+  UART is accessed via pin 7 of the J12 connector (the top-most 40-pin header).
+  The other UART pins (RxD, RTS and CTS) can be located on J13 (the other 40-pin
   header) at pins 28, 30 and 32 (respectively). Because this app only writes to
   the UART, it is only necessary to monitor the TxD pin.
 
-  This UART must be initialized with mraa using its `/dev/ttyS0` name.
+  This UART must be initialized with mraa using its device name.
 
-* UART(`ttyS1`) is “UART TTL” compatible. The TxD (Transmit) pin of this UART
-  is accessed via pin 22 of the J12 connector (the top-most 40-pin header). The
-  RxD pin is located at pin 24 of J12. There are no RTS and CTS pins associated
-  with this UART. Because this app only writes to the UART, it is only necessary
-  to monitor the TxD pin.
+* `Uart("/dev/ttyS1")` is “UART TTL” compatible. The TxD (Transmit) pin of this
+  UART is accessed via pin 22 of the J12 connector (the top-most 40-pin header).
+  The RxD pin is located at pin 24 of J12. There are no RTS and CTS pins
+  associated with this UART. Because this app only writes to the UART, it is
+  only necessary to monitor the TxD pin.
 
-  This UART must be initialized with mraa using its `/dev/ttyS1` name.
+  This UART must be initialized with mraa using its device name.
 
-* UART(`ttyS2`) is accessed via the USB “FTDI” interface.
+* `Uart("/dev/ttyS2")` is accessed via the USB “FTDI” interface.
 
   This [USB “FTDI”][15] interface provides access to a serial to USB console
   device. It is the micro-USB connector (j9) located between the large Type A
   USB connector and the small micro-HDMI connector. This port is typically
   configured to listen for a login using the Linux `getty` daemon. This means
-  that data you write to the this port may be intermixed with serial data
-  emitted by other services that are also connected to the port.
+  that data you write to this port may be intermixed with serial data emitted
+  by other services that are also connected to the port.
 
-  This UART must be initialized with mraa using its `/dev/ttyS2` name.
+  This UART must be initialized with mraa using its device name.
 
 [15]: https://en.wikipedia.org/wiki/FTDI
 
-* UART(`ttyS3`) is “UART TTL” compatible. The TxD (Transmit) pin of this UART
-  is accessed via pin 34 of the J13 connector (the inner 40-pin header). The
-  other UART pins (RxD, RTS and CTS) are also located on J13, at pins 36, 38
+* `Uart("/dev/ttyS3")` is “UART TTL” compatible. The TxD (Transmit) pin of this
+  UART is accessed via pin 34 of the J13 connector (the inner 40-pin header).
+  The other UART pins (RxD, RTS and CTS) are also located on J13, at pins 36, 38
   and 40 (respectively). Because this app only writes to the UART, it is only
   necessary to monitor the TxD pin.
 
-  This UART must be initialized with mraa using its `/dev/ttyS3` name.
+  This UART must be initialized with mraa using its device name.
 
 Important Sample App Files
 --------------------------
