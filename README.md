@@ -125,8 +125,8 @@ The Intel Edison board provides access to three UART controllers:
 
 > Because the Joule BIOS does not enumerate the onboard UART devices, you
 > must use the Linux `/dev/tty??` device names to access these devices.
-> This means there are no "UART pin numbers" that can be used to identify the
-> onboard Joule UART devices.
+> This means you cannot use "UART pin numbers" to identify the onboard
+> Joule UART devices.
 
 * `Uart("/dev/ttyS0")` is “UART TTL” compatible. The TxD (Transmit) pin of this
   UART is accessed via pin 7 of the J12 connector (the top-most 40-pin header).
@@ -136,6 +136,8 @@ The Intel Edison board provides access to three UART controllers:
 
   This UART must be initialized with mraa using its device name.
 
+  Referred to as "UART port 0" in the Joule module hardware documentation.
+
 * `Uart("/dev/ttyS1")` is “UART TTL” compatible. The TxD (Transmit) pin of this
   UART is accessed via pin 22 of the J12 connector (the top-most 40-pin header).
   The RxD pin is located at pin 24 of J12. There are no RTS and CTS pins
@@ -143,6 +145,8 @@ The Intel Edison board provides access to three UART controllers:
   only necessary to monitor the TxD pin.
 
   This UART must be initialized with mraa using its device name.
+
+  Referred to as "UART port 1" in the Joule module hardware documentation.
 
 * `Uart("/dev/ttyS2")` is accessed via the USB “FTDI” interface.
 
@@ -155,6 +159,10 @@ The Intel Edison board provides access to three UART controllers:
 
   This UART must be initialized with mraa using its device name.
 
+  Referred to as "UART port 2" in the Joule module hardware documentation.
+  The hardware documentation states that "UART port 2 is used as a debug
+  port for BIOS messages during boot."
+
 [15]: https://en.wikipedia.org/wiki/FTDI
 
 * `Uart("/dev/ttyS3")` is “UART TTL” compatible. The TxD (Transmit) pin of this
@@ -164,6 +172,8 @@ The Intel Edison board provides access to three UART controllers:
   necessary to monitor the TxD pin.
 
   This UART must be initialized with mraa using its device name.
+
+  Referred to as "ISH UART port 0" in the Joule module hardware documentation.
 
 Important Sample App Files
 --------------------------
