@@ -175,20 +175,24 @@ The Intel Edison board provides access to three UART controllers:
 
   Referred to as "ISH UART port 0" in the Joule module hardware documentation.
 
-Important Sample App Files
---------------------------
+Important App Files
+-------------------
 * main.js
 * package.json
 
-Important Sample Project Files
-------------------------------
+Important Project Files
+-----------------------
 * README.md
 * LICENSE.md
-* project-name.xdk
-* project-name.xdke
+* <project-name>.xdk
 
 Tested IoT Node.js Platforms
 ----------------------------
 * [Intel® Galileo Board for Arduino](http://intel.com/galileo)
 * [Intel® Edison Board for Ardunio](http://intel.com/edison)
 * [Intel® Joule™ 570x Developer Kit](http://intel.com/joule)
+
+This sample can run on other IoT [Node.js](http://nodejs.org) development
+platforms, that include the appropriate sensor hardware, but may require
+changes to the I/O initialization and configuration code in order to work on
+those other platforms.
