@@ -1,8 +1,13 @@
-/*
+/**
+ * @file
  * Initialization and configuration code for the 'IoT UART' app.
  * Designed to allow use of this sample on a variety of platforms.
  *
- * See LICENSE.md for license terms and conditions.
+ * @author Paul Fischer, Intel Corporation
+ *
+ * @copyright (c) 2016-2017, Intel Corporation
+ * @license BSD-3-Clause
+ * See LICENSE.md for complete license terms and conditions.
  */
 
 /* spec jslint and jshint lines for desired JavaScript linting */
@@ -34,7 +39,6 @@
  * @function
  * @param {Object} options? - object containing module options
  * @return {Object} cfg - module's public methods and properties
- * @author Paul Fischer, Intel Corporation
  */
 
 module.exports = function(options) {
@@ -61,7 +65,7 @@ module.exports = function(options) {
         process.exit(-1) ;
     }
     cfg.mraa = require("mraa") ;                    // initializes libmraa for I/O access
-    ver = require("./utl/version-compare.js") ;     // simple version strings comparator
+    ver = require("./version-compare") ;            // simple version strings comparator
 
 
 
@@ -99,7 +103,6 @@ module.exports = function(options) {
  *
  * @function
  * @return {Boolean} true if supported platform detected (and initialized)
- * @author Paul Fischer, Intel Corporation
  */
 
     cfg.init = function() {
@@ -108,14 +111,19 @@ module.exports = function(options) {
         var chkPlatform = true ;                        // start out hopeful!
         switch( cfg.mraa.getPlatformType() ) {          // which board are we running on?
 
-            case cfg.mraa.INTEL_GALILEO_GEN1:           // Gallileo Gen 1
-            case cfg.mraa.INTEL_GALILEO_GEN2:           // Gallileo Gen 2
+            case cfg.mraa.INTEL_GALILEO_GEN1:           // Galileo Gen 1
+            case cfg.mraa.INTEL_GALILEO_GEN2:           // Galileo Gen 2
             case cfg.mraa.INTEL_EDISON_FAB_C:           // Edison
                 io = opt.altPin ? io : 0 ;              // use alternate UART?
                 break ;
 
             case cfg.mraa.INTEL_GT_TUCHUCK:             // Joule (aka Grosse Tete)
                 io = opt.altPin ? io : "/dev/ttyS2" ;   // use alternate UART?
+                break ;
+
+            case cfg.mraa.INTEL_DE3815:                 // Arduino 101 (aka "firmata") + DE3815 Baytrail NUCs
+            case cfg.mraa.INTEL_NUC5:                   // Arduino 101 (aka "firmata") + 5th gen Broadwell NUCs
+                console.error("Unsupported platform: NUC/Gateway/firmata platforms are not supported by this sample.") ;
                 break ;
 
             default:
@@ -143,7 +151,6 @@ module.exports = function(options) {
  *
  * @function
  * @return {Boolean} true if "all systems go"
- * @author Paul Fischer, Intel Corporation
  */
 
     cfg.test = function() {
@@ -165,6 +172,12 @@ module.exports = function(options) {
             case cfg.mraa.INTEL_GT_TUCHUCK:             // Joule (aka Grosse Tete)
                 checkNode = checkNodeVersion("4.0") ;
                 checkMraa = checkMraaVersion("1.3.0") ;
+                break ;
+
+            case cfg.mraa.INTEL_DE3815:                 // Arduino 101 (aka "firmata") + DE3815 Baytrail NUCs
+            case cfg.mraa.INTEL_NUC5:                   // Arduino 101 (aka "firmata") + 5th gen Broadwell NUCs
+                checkNode = checkNodeVersion("4.0") ;
+                checkMraa = checkMraaVersion("0.10.1") ;
                 break ;
 
             default:
@@ -220,7 +233,6 @@ module.exports = function(options) {
  *
  * @function
  * @return {Void}
- * @author Paul Fischer, Intel Corporation
  */
 
     cfg.identify = function() {

@@ -34,6 +34,11 @@ associated with [RS-232][6] and [COM ports][7].
 > Following are some board-specific notes to help you use this app with your
 > specific IoT hardware device.
 
+### [Intel® NUC DE3815](http://www.intel.com/nucsupport) + [Arduino 101](http://intel.com/arduino)
+
+The "firmata" development platform (Intel NUC/Gateway plus an attached Arduino
+101) is not supported by this sample.
+
 ### [Intel® Galileo Board for Arduino (Gen1)](http://intel.com/galileo)
 
 The Intel Galileo Gen1 board provides access to two UART controllers:
@@ -184,7 +189,7 @@ Important Project Files
 -----------------------
 * README.md
 * LICENSE.md
-* <project-name>.xdk
+* \<project-name\>.xdk
 
 Tested IoT Node.js Platforms
 ----------------------------
