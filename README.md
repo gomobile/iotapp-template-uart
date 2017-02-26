@@ -3,8 +3,8 @@ Intel® XDK IoT Node.js\* UART Serial Communication App
 See [LICENSE.md](LICENSE.md) for license terms and conditions.
 
 This sample application is distributed as part of the [Intel® XDK][1]. It can
-also be downloaded or cloned directly from its git repo on the [public Intel XDK
-GitHub\* site][2].
+also be downloaded or cloned directly from its git repo on the
+[public IntelXDK GitHub\* site][2].
 
 [1]: http://xdk.intel.com
 [2]: https://github.com/gomobile
@@ -13,6 +13,12 @@ For help getting started developing applications with the Intel XDK, please
 start with [the Intel XDK documentation][3].
 
 [3]: https://software.intel.com/en-us/xdk/docs
+
+See also, the
+[mraa library documentation](https://iotdk.intel.com/docs/master/mraa/index.html)
+for details regarding supported boards and the mraa library API and the
+[upm library documentation](https://iotdk.intel.com/docs/master/upm/) for
+information regarding the upm sensor and actuator library APIs.
 
 App Overview
 ------------
@@ -194,7 +200,7 @@ Important Project Files
 Tested IoT Node.js Platforms
 ----------------------------
 * [Intel® Galileo Board for Arduino](http://intel.com/galileo)
-* [Intel® Edison Board for Ardunio](http://intel.com/edison)
+* [Intel® Edison Board for Arduino](http://intel.com/edison)
 * [Intel® Joule™ 570x Developer Kit](http://intel.com/joule)
 
 This sample can run on other IoT [Node.js](http://nodejs.org) development
