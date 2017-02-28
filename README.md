@@ -1,5 +1,6 @@
 Intel® XDK IoT Node.js\* UART Serial Communication App
 ======================================================
+
 See [LICENSE.md](LICENSE.md) for license terms and conditions.
 
 This sample application is distributed as part of the [Intel® XDK][1]. It can
@@ -22,6 +23,7 @@ information regarding the upm sensor and actuator library APIs.
 
 App Overview
 ------------
+
 A simple node.js application that demonstrates writing data via a serial port,
 on select Intel IoT development boards. This app uses the [mraa Uart object][4]
 to write to the selected serial port's TxD (Transmit Data) pin. This is a
@@ -188,17 +190,20 @@ The Intel Edison board provides access to three UART controllers:
 
 Important App Files
 -------------------
+
 * main.js
 * package.json
 
 Important Project Files
 -----------------------
+
 * README.md
 * LICENSE.md
 * \<project-name\>.xdk
 
 Tested IoT Node.js Platforms
 ----------------------------
+
 * [Intel® Galileo Board for Arduino](http://intel.com/galileo)
 * [Intel® Edison Board for Arduino](http://intel.com/edison)
 * [Intel® Joule™ 570x Developer Kit](http://intel.com/joule)
