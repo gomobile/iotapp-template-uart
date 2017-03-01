@@ -124,6 +124,7 @@ module.exports = function(options) {
             case cfg.mraa.INTEL_DE3815:                 // Arduino 101 (aka "firmata") + DE3815 Baytrail NUCs
             case cfg.mraa.INTEL_NUC5:                   // Arduino 101 (aka "firmata") + 5th gen Broadwell NUCs
                 console.error("Unsupported platform: NUC/Gateway/firmata platforms are not supported by this sample.") ;
+                chkPlatform = false ;                   // same as unrecognized platform
                 break ;
 
             default:
