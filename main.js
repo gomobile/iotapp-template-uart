@@ -24,15 +24,19 @@
 "use strict" ;
 
 
-var APP_NAME = "IoT UART Read & Write" ;
-var cfg = require("./utl/cfg-app-platform.js")() ;      // init and config I/O resources
 
-console.log("\n\n\n\n\n\n") ;                           // poor man's clear console
+var APP_NAME = "IoT UART Read & Write" ;
+var Cfg = require("./utl/cfg-app-platform.js") ;    // get Cfg() constructor
+var cfg = new Cfg() ;                               // init and config I/O resources
+
+console.log("\n\n\n\n\n\n") ;                       // poor man's clear console
 console.log("Initializing " + APP_NAME) ;
 
-process.on("exit", function(code) {                     // define up front, due to no "hoisting"
+process.on("exit", function(code) {                 // define up front, due to no "hoisting"
     clearInterval(intervalID) ;
-    console.log("\nExiting " + APP_NAME + ", with code:", code) ;
+    console.log(" ") ;
+    console.log("Exiting " + APP_NAME + ", with code:", code) ;
+    console.log(" ") ;
 }) ;
 
 
@@ -50,7 +54,7 @@ if( !cfg.init() ) {
 }
 
 
-// configure (initialize) our I/O for usage (gives us an I/O object)
+// configure (initialize) our I/O pins for usage (gives us an I/O object)
 // configuration is based on parameters provided by the call to cfg.init()
 
 cfg.io = new cfg.mraa.Uart(cfg.ioPin) ;         // construct our I/O object

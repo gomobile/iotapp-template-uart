@@ -1,6 +1,6 @@
 {
   "name": "xdk-iot-uart",
-  "description": "",
+  "description": "Intel XDK IoT UART Serial Communication App",
   "version": "0.0.0",
   "main": "main.js",
   "engines": {
