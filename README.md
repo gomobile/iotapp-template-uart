@@ -15,11 +15,12 @@ start with [the Intel XDK documentation][3].
 
 [3]: https://software.intel.com/en-us/xdk/docs
 
-See also, the
-[mraa library documentation](https://iotdk.intel.com/docs/master/mraa/index.html)
-for details regarding supported boards and the mraa library API and the
-[upm library documentation](https://iotdk.intel.com/docs/master/upm/) for
+See also, the [mraa library documentation] for details regarding supported
+boards and the mraa library API and the [upm library documentation] for
 information regarding the upm sensor and actuator library APIs.
+
+[mraa library documentation]: https://iotdk.intel.com/docs/master/mraa/index.html
+[upm library documentation]: https://iotdk.intel.com/docs/master/upm/
 
 App Overview
 ------------
@@ -136,10 +137,10 @@ The Intel Edison board provides access to three UART controllers:
 
 ### [Intel® Joule™ 570x Developer Kit](http://intel.com/joule)
 
-> Because the Joule BIOS does not enumerate the onboard UART devices, you
-> must use the Linux `/dev/tty??` device names to access these devices.
-> This means you cannot use "UART pin numbers" to identify the onboard
-> Joule UART devices.
+> Because the Joule BIOS does not enumerate the onboard UART devices, you must
+> use the Linux `/dev/tty??` device names to access them. This means you
+> cannot pass in an integer value "UART pin number" to identify the onboard
+> Joule UART devices, like you can with the Edison and Galileo boards.
 
 * `Uart("/dev/ttyS0")` is “UART TTL” compatible. The TxD (Transmit) pin of this
   UART is accessed via pin 7 of the J12 connector (the top-most 40-pin header).
@@ -188,6 +189,14 @@ The Intel Edison board provides access to three UART controllers:
 
   Referred to as "ISH UART port 0" in the Joule module hardware documentation.
 
+### [Intel® NUC or Gateway](http://www.intel.com/nucsupport)
+
+Like the Joule (above) you must use the Linux `/dev/tty??` device names to
+access the local UART devices on your IoT system (NUC or Gateway device) when
+using the mraa library; the use of a USB-attached Arduino 101 that is running
+the `firmata` sketch app is not supported by this sample. Any Arduino 101
+attached to your NUC/Gateway device will be ignored by this sample.
+
 Important App Files
 -------------------
 
@@ -207,8 +216,22 @@ Tested IoT Node.js Platforms
 * [Intel® Galileo Board for Arduino](http://intel.com/galileo)
 * [Intel® Edison Board for Arduino](http://intel.com/edison)
 * [Intel® Joule™ 570x Developer Kit](http://intel.com/joule)
+* [Intel® NUC DE3815]
+* [Intel® NUC5i7RYH]
+
+[Intel® NUC DE3815]: http://ark.intel.com/products/78577/Intel-NUC-Kit-DE3815TYKHE
+[Intel® NUC5i7RYH]: https://ark.intel.com/products/87570/Intel-NUC-Kit-NUC5i7RYH
+
+> See the [Intel® NUC support page](http://www.intel.com/nucsupport)
+> and the [Intel Product Specifications](http://ark.intel.com/) search tool
+> for detailed hardware specifications and support.
 
 This sample can run on other IoT [Node.js](http://nodejs.org) development
-platforms, that include the appropriate sensor hardware, but may require
-changes to the I/O initialization and configuration code in order to work on
-those other platforms.
+platforms, but they must include the appropriate hardware. If you use an IoT
+device that is not listed above you may have to make changes to the I/O
+initialization and configuration code in the `cfg-app-platform.js` module
+before it will work on those other platforms. See this
+[device software prerequisites][16] page for help configuring the software on
+your IoT device so it can be used with the Intel XDK.
+
+[16]: https://software.intel.com/en-us/xdk/docs/target-device-software-prereqs
