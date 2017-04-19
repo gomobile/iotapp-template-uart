@@ -1,6 +1,6 @@
 /**
  * @file
- * A simple Node.js application to read and write to a UART.
+ * A simple Node.js application to write to a UART.
  *
  * Supported Intel IoT development boards are identified in the code.
  * See the `cfg-app-platform.js` file for board configuration details.
@@ -25,7 +25,7 @@
 
 
 
-var APP_NAME = "IoT UART Read & Write" ;
+var APP_NAME = "IoT UART Serial Write" ;
 var Cfg = require("./utl/cfg-app-platform.js") ;    // get Cfg() constructor
 var cfg = new Cfg() ;                               // init and config I/O resources
 
